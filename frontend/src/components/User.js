@@ -10,7 +10,7 @@ export default function User ({ username, myId, setLoggedUser, setLogged ,isButt
 
     const addFriend = () => {
         setIsButtonDisabled(true)
-        axios.post('http://localhost:3001/api/users/addFriend?_method=PUT', {
+        axios.post('https://notagram-api.onrender.com/api/users/addFriend?_method=PUT', {
             id: myId,
             username: username
         }).then( res => {
@@ -19,7 +19,7 @@ export default function User ({ username, myId, setLoggedUser, setLogged ,isButt
             setIsButtonDisabled(false)
         }).catch(error=>{
             alert(error.response.data.message)
-            axios.get('http://localhost:3001/auth/check')
+            axios.get('https://notagram-api.onrender.com/auth/check')
                 .then( (response)=>{
                 console.log(response)
                 setLogged(error.response.data.isLogged)

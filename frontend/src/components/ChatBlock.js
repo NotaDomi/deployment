@@ -21,18 +21,18 @@ export default function ChatBlock({messages, setMessages, setLogged, loggedUser,
     
       const sendMessage = (event) => { 
         event.preventDefault();
-        axios.post('http://localhost:3001/api/messages/send', {
+        axios.post('https://notagram-api.onrender.com/api/messages/send', {
             sender: loggedUser.id,
             receiver: friend.id,
             content: message
         }).then( () => {
-            axios.get(`http://localhost:3001/api/messages/getMessages/${loggedUser.id}/${friend.id}`).then( res => {
+            axios.get(`https://notagram-api.onrender.com/api/messages/getMessages/${loggedUser.id}/${friend.id}`).then( res => {
             setMessages(res.data);
             setMessage('');
           })
         }).catch(error=>{
             alert(error.response.data.message)
-            axios.get('http://localhost:3001/auth/check')          
+            axios.get('https://notagram-api.onrender.com/auth/check')          
             .then( (response)=>{
                 console.log(response)
                 setLogged(error.response.data.isLogged)
@@ -44,13 +44,13 @@ export default function ChatBlock({messages, setMessages, setLogged, loggedUser,
   
     //handler richiamato quando si preme sul tasto per aggiornare la chat (abbiamo deciso di non utilizzare l'approccio real-time)
       const updateHandler = () => {
-        axios.get(`http://localhost:3001/api/messages/getMessages/${loggedUser.id}/${friend.id}`).then( res => {
+        axios.get(`https://notagram-api.onrender.com/api/messages/getMessages/${loggedUser.id}/${friend.id}`).then( res => {
           
           setMessages(res.data);
           setFriend({user:friend.user,id:friend.id})
           }).catch(error=>{
           alert(error.response.data.message)
-          axios.get('/auth/check')
+          axios.get('https://notagram-api.onrender.com/auth/check')
               .then((response)=>{
                 console.log(response)
                 setLogged(error.response.data.isLogged)

@@ -16,19 +16,19 @@ export default function Register({setLogged,setLoggedUser,setIsButtonDisabled,is
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsButtonDisabled(true)
-    axios.post( 'http://localhost:3001/auth/register', {
+    axios.post( 'https://notagram-api.onrender.com/auth/register', {
       username: signInfo.username,
       password: signInfo.password
     }).then(r => {
       alert(r.data.message)
-      axios.get('http://localhost:3001/auth/check')
+      axios.get('https://notagram-api.onrender.com/auth/check')
       .then((response)=>{
       console.log(response)
       setLogged(response.data.isLogged)
       setLoggedUser(response.data.user)
     })
       setIsButtonDisabled(false)
-      navigate('http://localhost:3001/home');
+      navigate('https://notagram-api.onrender.com/home');
     }).catch( error => {
       alert(error.response.data.message)
       setSignInfo({username: '', password: ''})

@@ -27,14 +27,14 @@ Se non ci sono più utenti da visualizzare allora setta lo stato showTextHome a 
 
     useEffect( () => { 
 
-        axios.get('http://localhost:3001/api/users/allUsers')
+        axios.get('https://notagram-api.onrender.com/api/users/allUsers')
         .then(res => {
             setAllUsers(res.data)
             setLoading(false)
         })
         .catch(error=>{
             alert(error.response.data.message)
-            axios.get('http://localhost:3001/auth/check')
+            axios.get('https://notagram-api.onrender.com/auth/check')
                 .then((response)=>{
                 console.log(response)
                 setLogged(error.response.data.isLogged)

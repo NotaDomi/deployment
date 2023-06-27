@@ -37,7 +37,7 @@ Appena caricata l'app viene verificato se la sessione è ancora valida, e setta 
 in base alle informazioni correnti
 */
   useEffect( () => { 
-    axios.get('http://localhost:3001/auth/check').then((response)=>{
+    axios.get('https://notagram-api.onrender.com/auth/check').then((response)=>{
       console.log(response)
       setLogged(response.data.isLogged)
       setLoggedUser(response.data.user)
