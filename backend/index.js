@@ -48,7 +48,7 @@ const authMiddleware = require('./middlewares/auth')
 
 app.use(express.json())
 app.use(cors({
-  origin:["http://localhost:3000"],
+  origin:["https://notagram-app.onrender.com"],
   methods: ["GET","POST"],
   credentials: true
 }))
